@@ -10,7 +10,4 @@ externalLink = ""
 series = []
 +++
 
-Time to prove things! Yay!
-
-```python
-print("I'm excited!")```
+Temporary guide.
