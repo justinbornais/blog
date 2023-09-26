@@ -33,7 +33,8 @@ When writing proofs, follow these general tips:
 1. Always state your justification for each line.
     - If you applied an equivalence or inference rule, state the line you applied it to. If you applied E10 on line 3, write *"3, E10"*.
     - If you are stating the premise in a direct proof or proof by contraposition, write *"Premise"*.
-    - If you are stating the hypothesis in a proof by contradiction, write *"Hypothesis"*.
+    - If you are stating the hypothesis in a proof by contradiction or vacuous proof, write *"Hypothesis"*.
+    - If you are stating the assumption in an indirect proof, write *"Assumption"*.
     - If you are writing a given premise from $\Gamma$, write *"from $\Gamma$"*.
     - If you are writing the axiom $\omega\lor\lnot\omega$, write *"axiom"*.
 2. Don't apply two equivalences/inference rules on the same line. Do one equivalence or inference rule at a time. Otherwise, you are skipping steps and marks will be deducted.
@@ -45,7 +46,7 @@ When writing proofs, follow these general tips:
 There are many proof methods to discuss.
 
 ## Direct Proof
-The exact form in the courseware is:
+This is one of the most common proofs. The exact form in the courseware is:
 > To prove that $\vdash(\alpha\Rightarrow\beta)$, we may prove that $\alpha\vdash\beta$. i.e. we may derive a proof of $\beta$ from $\alpha$.
 
 This effectively means, if the wff we are trying to prove is of the form $\alpha\Rightarrow\beta$, then we can assume $\alpha$ (call it the *premise*) and prove $\beta$.
@@ -64,3 +65,148 @@ This is of the form $\alpha\Rightarrow\beta$, where $\alpha$ is $(p\Rightarrow r
 
 Thus $((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)\qquad\blacksquare$
 {{< /notice >}}
+
+## Proof by Contradiction
+This is probably the second most common proof. The exact form in the courseware is:
+> To prove that $\vdash\omega$, we may proceed to prove that $\lnot\omega\vdash false$.
+
+This means, if we're trying to prove something (i.e. $\omega$), we can assume the negation ($\lnot\omega$) and show that we eventually lead to false.
+
+{{< notice example >}}
+Prove the following: $\vdash((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)$.
+
+(Proof by Contradiction)\
+1\. $((p\Rightarrow r)\land(r\Rightarrow q))\land\lnot(p\Rightarrow q)\quad$ Hypothesis\
+2\. $(p\Rightarrow r)\land(r\Rightarrow q)\quad$ 1, I2\
+3\. $p\Rightarrow r\quad$ 2, I2\
+4\. $(r\Rightarrow q)\land(p\Rightarrow r)\quad$ 2, E9\
+5\. $r\Rightarrow q\quad$ 4, I2\
+6\. $p\Rightarrow q\quad$ 3, 5, I5\
+7\. $\lnot(p\Rightarrow q)\land((p\Rightarrow r)\land(r\Rightarrow q))\quad$ 1, E9\
+8\. $\lnot(p\Rightarrow q)\quad$ 7, I2\
+9\. $(p\Rightarrow q)\land\lnot(p\Rightarrow q)\quad$ 6, 8, I6\
+10\. $false\quad$ 9, E1
+
+Thus $((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)\qquad\blacksquare$
+{{< /notice >}}
+
+## Indirect Proof
+This proof is used sparingly, but is also beneficial to know. The exact form in the courseware is:
+> To prove that $\vdash(\alpha\Rightarrow\beta)$, we may proceed to prove that $\vdash(\lnot\beta\Rightarrow\lnot\alpha)$.
+
+This is effectively the opposite of a direct proof. We prove its *contrapositive* instead. Then, you proceed with the proof using another proof method.
+
+{{< notice example >}}
+Prove the following: $\vdash(\lnot p\Rightarrow p)\Rightarrow p$
+
+(Indirect proof) We shall prove that $\vdash\lnot p\Rightarrow\lnot(\lnot p\Rightarrow p)$
+
+(Direct proof)\
+1\. $\lnot p\quad$ Assumption\
+2\. $\lnot(p\lor p)\quad$ 1, E4\
+3\. $\lnot(\lnot\lnot p\lor p)\quad$ 2, E15\
+4\. $\lnot(\lnot p\Rightarrow p)\quad$ 4, E18
+
+Thus $\vdash\lnot p\Rightarrow\lnot(\lnot p\Rightarrow p)$.
+
+Consequently, $\vdash(\lnot p\Rightarrow p)\Rightarrow p\qquad\blacksquare$
+
+See how there's two conclusion statements? That's because we have to show we finished the direct proof, then we have to finish the indirect proof.
+{{< /notice >}}
+
+## Proof by Cases
+This is useful in later chapters, primarily chapters 4-7. The exact form in the courseware is:
+> To prove that $\vdash(\alpha_1\lor\alpha_2\lor\dots\lor\alpha_k)\Rightarrow\beta$, we may proceed to prove that $\vdash\alpha_1\Rightarrow\beta$ and $\vdash\alpha_2\Rightarrow\beta$ and $\dots$ and $\vdash\alpha_k\Rightarrow\beta$.
+
+Then with each case, you need to specify a proof method and prove each case.
+
+{{< notice note >}}
+The order of cases doesn't matter.
+{{< /notice>}}
+
+{{< notice example >}}
+Prove the following: $\vdash((\lnot p\Rightarrow p)\lor((\lnot p\Rightarrow q)\land\lnot q))\Rightarrow p$.
+
+(Proof by Cases)
+
+Case 1: Prove that $\vdash(\lnot p\Rightarrow p)\Rightarrow p$. (see the Indirect Proof example [above](/posts/comp-2310-info-of-proofs/#indirect-proof))
+
+Case 2: Prove that $\vdash((\lnot p\Rightarrow q)\land\lnot q)\Rightarrow p$.
+
+(Direct prooof)\
+1\. $(\lnot p\Rightarrow q)\land\lnot q\quad$ Premise\
+2\. $\lnot p\Rightarrow q\quad$ 1, I2\
+3\. $\lnot q\land (\lnot p\Rightarrow q)\quad$ 1, E9\
+4\. $\lnot q\quad$ 3, I2\
+5\. $\lnot\lnot p\quad$ 4, 2, I4\
+6\. $p\quad$ 5, E15
+
+Hence $\vdash((\lnot p\Rightarrow q)\land\lnot q)\Rightarrow p$.
+
+Thus, $\vdash((\lnot p\Rightarrow p)\lor((\lnot p\Rightarrow q)\land\lnot q))\Rightarrow p\qquad\blacksquare$
+{{< /notice >}}
+
+## Bidirectional Proof
+This is used whenever you are trying to prove a wff with a bidirectional. The exact form in the courseware is:
+> To prove that $\vdash\alpha\Leftrightarrow\beta$, we may prove that $\vdash\alpha\Rightarrow\beta$ and $\vdash\beta\Rightarrow\alpha$.
+
+Similarly to a proof by cases, break the proof up into two cases and prove each case separately.
+{{< notice note >}}
+The order in which you prove them doesn't matter.
+{{< /notice>}}
+{{< notice note >}}
+If you only use equivalences for one side of the proof (no inference rules), then this greatly shortens the bidirectional proof as you only need to write "Same as above case but in the reverse order."
+{{< /notice>}}
+
+{{< notice example >}}
+(Simple example to show the format of the proof)\
+Prove that $\vdash(p\lor p)\Leftrightarrow p$.
+
+(Bidirectional proof)
+
+(i) Prove that $\vdash(p\lor p)\Rightarrow p$.
+
+(Direct proof)\
+1\. $p\lor p\quad$ Premise\
+2\. $p\quad$ 1, E4
+
+Hence $\vdash(p\lor p)\Rightarrow p$.
+
+(ii) Prove that $\vdash p\Rightarrow(p\lor p)$.\
+Same as above proof but in the reverse order.\
+Hence $\vdash p\Rightarrow(p\lor p)$.
+
+Combining the results of (i) and (ii), we have $\vdash(p\lor p)\Leftrightarrow p\qquad\blacksquare$
+{{< /notice >}}
+
+## Trivial Proof
+This is hardly used at all, except for specific circumstances. The exact form in the courseware is:
+> To prove that $\vdash\alpha\Rightarrow\beta$, we may attempt to prove that $\vdash\beta$.
+
+This means we are only proving $\beta$ with the axiom $\omega\lor\lnot\omega$.
+{{< notice example >}}
+Prove that $\vdash p\Rightarrow\lnot(q\land\lnot q)$.
+
+(Trivial proof)\
+1\. $\lnot q\lor\lnot\lnot q\quad$ axiom\
+2\. $\lnot(q\land\lnot q)\quad$ 1, E16
+
+Thus $\vdash p\Rightarrow\lnot(q\land\lnot q)\qquad\blacksquare$
+{{< /notice >}}
+
+## Vacuous Proof
+Honestly, I am not even sure if I have used this proof method before. The exact form in the courseware is:
+> To prove that $\vdash\alpha\Rightarrow\beta$, we may attempt to prove that $\vdash\alpha\Rightarrow false$
+
+{{< notice example >}}
+Prove that $\vdash(p\land\lnot p)\Rightarrow(q\lor\lnot p)$
+
+(Vacuous proof)\
+1\. $p\land\lnot p\quad$ Hypothesis\
+2\. $false\quad$ 1, E1
+
+Hence, $\vdash(p\land\lnot p)\Rightarrow(q\lor\lnot p)\qquad\blacksquare$
+{{< /notice >}}
+
+# Summary
+These are 8 proof methods (including proof by definition) to help with proofs in 2310. Understanding how these work as well as how to format them will ensure you success in 2310 in the future.
