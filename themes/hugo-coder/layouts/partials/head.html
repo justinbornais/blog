@@ -10,7 +10,6 @@
 {{ partialCached "head/color-scheme.html" . }}
 
 {{ partialCached "head/custom-styles.html" . }}
-<link rel="stylesheet" href="/styles.css">
 
 {{ partialCached "head/custom-icons.html" . }}
 
@@ -19,3 +18,4 @@
 {{ if .IsHome }}{{ partial "head/hugo-generator.html" . }}{{ end }}
 
 {{ partial "head/extensions.html" . }}
+<link rel="stylesheet" href="/styles.css">

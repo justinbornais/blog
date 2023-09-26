@@ -1,3 +1,7 @@
 blockquote {
   font-style: normal !important;
 }
+
+li {
+  margin-bottom: 0.5rem !important;
+}
