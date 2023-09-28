@@ -13,7 +13,7 @@ author = "Justin Bornais"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "Justin Bornais's personal blog."
 keywords = "blog,developer,personal,computer,science,cs,school,student,prof,professor"
-info = ["Full Stack Computer Scientist", "Pianist", "Piano Teacher", "Guitarist"]
+info = ["Full Stack Software Developer", "Pianist", "Piano Teacher", "Guitarist"]
 # avatarURL = "images/avatar.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
