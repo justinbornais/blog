@@ -12,7 +12,7 @@ series = []
 
 Section 1.8 of chapter 1 of the COMP2310 courseware discusses a concept called **Applications**. This describes using what was learned about formal proofs in propositional logic to test the validity of certain real-world arguments.
 
-In this blog, I will go over some examples to see how we can use propositional logic to prove if certain arguments make sense. Each proof follows a given structure:
+In this blog, I will go over an example to see how we can use propositional logic to prove if certain arguments make sense. Each proof follows a given structure:
 1. Denote each proposition with a variable (usually upper-case but doesn't have to be), such as $A$, $B$, $C$, etc.
 2. Translate each statement into a wff.
 3. Prove the conclusion with the given premises.
