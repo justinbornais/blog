@@ -15,7 +15,7 @@ In order to succeed in COMP2310, you need to have a good understanding of proofs
 
 > A ***derivation*** or ***proof*** of a wff $\alpha$ from a set of wffs $\Gamma$ in propositional logic is a sequence of wffs, $\alpha_1,\alpha_2,\dots,\alpha_n$ such that $\alpha_n=\alpha$, and for each $i,\;1\leq i\leq n$,
 > 1. $\alpha_i$ is a wff in $\Gamma$, or
-> 2. $\alpha_i$ is of the form $\omega\lor\lnot\omega$, called *axiom*, where $\omega$ is a wff, or
+> 2. $\alpha_i$ is of the form $\omega\lor\sim\omega$, called *axiom*, where $\omega$ is a wff, or
 > 3. $\alpha_i$ is a direct consequence of some of the preceding wffs by substitution or by virtue of one of the inference rules.
 
 This definition perfectly describes a proof. What it translates to is this:
@@ -23,7 +23,7 @@ This definition perfectly describes a proof. What it translates to is this:
 - The "sequence of wffs, $\alpha_1,\alpha_2,\dots,\alpha_n$ such that $\alpha_n=\alpha$" simply means a proof contains many lines such that the last line is what you are trying to prove, which is $\alpha$.
 - Each line of the proof must meet one of the three conditions:
   1. It must be one of the premises you start with (it's a wff in $\Gamma$).
-  2. It must be the *axiom*, which is $\omega\lor\lnot\omega$ where $\omega$ is any wff. For example: $(\alpha\land\lnot\beta)\lor\lnot(\alpha\land\lnot\beta)$ is a valid line.
+  2. It must be the *axiom*, which is $\omega\lor\sim\omega$ where $\omega$ is any wff. For example: $(\alpha\land\sim\beta)\lor\sim(\alpha\land\sim\beta)$ is a valid line.
   3. It must be the result of applying an equivalence or inference rule on a previous line.
 
 # Tips when Writing Proofs
@@ -36,7 +36,7 @@ When writing proofs, follow these general tips:
     - If you are stating the hypothesis in a proof by contradiction or vacuous proof, write *"Hypothesis"*.
     - If you are stating the assumption in an indirect proof, write *"Assumption"*.
     - If you are writing a given premise from $\Gamma$, write *"from $\Gamma$"*.
-    - If you are writing the axiom $\omega\lor\lnot\omega$, write *"axiom"*.
+    - If you are writing the axiom $\omega\lor\sim\omega$, write *"axiom"*.
 2. Don't apply two equivalences/inference rules on the same line. Do one equivalence or inference rule at a time. Otherwise, you are skipping steps and marks will be deducted.
 3. Don't apply the same equivalence twice on the same line. Do one at a time.
     - If you have $(p\lor q)\land(r\lor s)$, you may be tempted to write "$(q\lor p)\land(s\lor r)$ 1, E10" as the next line.
@@ -68,23 +68,23 @@ Thus $((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)\qquad\b
 
 ## Proof by Contradiction
 This is probably the second most common proof. The exact form in the courseware is:
-> To prove that $\vdash\omega$, we may proceed to prove that $\lnot\omega\vdash false$.
+> To prove that $\vdash\omega$, we may proceed to prove that $\sim\omega\vdash false$.
 
-This means, if we're trying to prove something (i.e. $\omega$), we can assume the negation ($\lnot\omega$) and show that we eventually lead to false.
+This means, if we're trying to prove something (i.e. $\omega$), we can assume the negation ($\sim\omega$) and show that we eventually lead to false.
 
 {{< notice example >}}
 Prove the following: $\vdash((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)$.
 
 (Proof by Contradiction)\
-1\. $((p\Rightarrow r)\land(r\Rightarrow q))\land\lnot(p\Rightarrow q)\quad$ Hypothesis\
+1\. $((p\Rightarrow r)\land(r\Rightarrow q))\land\sim(p\Rightarrow q)\quad$ Hypothesis\
 2\. $(p\Rightarrow r)\land(r\Rightarrow q)\quad$ 1, I2\
 3\. $p\Rightarrow r\quad$ 2, I2\
 4\. $(r\Rightarrow q)\land(p\Rightarrow r)\quad$ 2, E9\
 5\. $r\Rightarrow q\quad$ 4, I2\
 6\. $p\Rightarrow q\quad$ 3, 5, I5\
-7\. $\lnot(p\Rightarrow q)\land((p\Rightarrow r)\land(r\Rightarrow q))\quad$ 1, E9\
-8\. $\lnot(p\Rightarrow q)\quad$ 7, I2\
-9\. $(p\Rightarrow q)\land\lnot(p\Rightarrow q)\quad$ 6, 8, I6\
+7\. $\sim(p\Rightarrow q)\land((p\Rightarrow r)\land(r\Rightarrow q))\quad$ 1, E9\
+8\. $\sim(p\Rightarrow q)\quad$ 7, I2\
+9\. $(p\Rightarrow q)\land\sim(p\Rightarrow q)\quad$ 6, 8, I6\
 10\. $false\quad$ 9, E1
 
 Thus $((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)\qquad\blacksquare$
@@ -92,24 +92,24 @@ Thus $((p\Rightarrow r)\land(r\Rightarrow q))\Rightarrow(p\Rightarrow q)\qquad\b
 
 ## Indirect Proof
 This proof is used sparingly, but is also beneficial to know. The exact form in the courseware is:
-> To prove that $\vdash(\alpha\Rightarrow\beta)$, we may proceed to prove that $\vdash(\lnot\beta\Rightarrow\lnot\alpha)$.
+> To prove that $\vdash(\alpha\Rightarrow\beta)$, we may proceed to prove that $\vdash(\sim\beta\Rightarrow\sim\alpha)$.
 
 This is effectively the opposite of a direct proof. We prove its *contrapositive* instead. Then, you proceed with the proof using another proof method.
 
 {{< notice example >}}
-Prove the following: $\vdash(\lnot p\Rightarrow p)\Rightarrow p$
+Prove the following: $\vdash(\sim p\Rightarrow p)\Rightarrow p$
 
-(Indirect proof) We shall prove that $\vdash\lnot p\Rightarrow\lnot(\lnot p\Rightarrow p)$
+(Indirect proof) We shall prove that $\vdash\sim p\Rightarrow\sim(\sim p\Rightarrow p)$
 
 (Direct proof)\
-1\. $\lnot p\quad$ Assumption\
-2\. $\lnot(p\lor p)\quad$ 1, E4\
-3\. $\lnot(\lnot\lnot p\lor p)\quad$ 2, E15\
-4\. $\lnot(\lnot p\Rightarrow p)\quad$ 4, E18
+1\. $\sim p\quad$ Assumption\
+2\. $\sim(p\lor p)\quad$ 1, E4\
+3\. $\sim(\sim p\lor p)\quad$ 2, E15\
+4\. $\sim(\sim p\Rightarrow p)\quad$ 4, E18
 
-Thus $\vdash\lnot p\Rightarrow\lnot(\lnot p\Rightarrow p)$.
+Thus $\vdash\sim p\Rightarrow\sim(\sim p\Rightarrow p)$.
 
-Consequently, $\vdash(\lnot p\Rightarrow p)\Rightarrow p\qquad\blacksquare$
+Consequently, $\vdash(\sim p\Rightarrow p)\Rightarrow p\qquad\blacksquare$
 
 See how there's two conclusion statements? That's because we have to show we finished the direct proof, then we have to finish the indirect proof.
 {{< /notice >}}
@@ -125,25 +125,25 @@ The order of cases doesn't matter.
 {{< /notice>}}
 
 {{< notice example >}}
-Prove the following: $\vdash((\lnot p\Rightarrow p)\lor((\lnot p\Rightarrow q)\land\lnot q))\Rightarrow p$.
+Prove the following: $\vdash((\sim p\Rightarrow p)\lor((\sim p\Rightarrow q)\land\sim q))\Rightarrow p$.
 
 (Proof by Cases)
 
-Case 1: Prove that $\vdash(\lnot p\Rightarrow p)\Rightarrow p$. (see the Indirect Proof example [above](/posts/comp-2310-info-of-proofs/#indirect-proof))
+Case 1: Prove that $\vdash(\sim p\Rightarrow p)\Rightarrow p$. (see the Indirect Proof example [above](/posts/comp-2310-info-of-proofs/#indirect-proof))
 
-Case 2: Prove that $\vdash((\lnot p\Rightarrow q)\land\lnot q)\Rightarrow p$.
+Case 2: Prove that $\vdash((\sim p\Rightarrow q)\land\sim q)\Rightarrow p$.
 
 (Direct prooof)\
-1\. $(\lnot p\Rightarrow q)\land\lnot q\quad$ Premise\
-2\. $\lnot p\Rightarrow q\quad$ 1, I2\
-3\. $\lnot q\land (\lnot p\Rightarrow q)\quad$ 1, E9\
-4\. $\lnot q\quad$ 3, I2\
-5\. $\lnot\lnot p\quad$ 4, 2, I4\
+1\. $(\sim p\Rightarrow q)\land\sim q\quad$ Premise\
+2\. $\sim p\Rightarrow q\quad$ 1, I2\
+3\. $\sim q\land (\sim p\Rightarrow q)\quad$ 1, E9\
+4\. $\sim q\quad$ 3, I2\
+5\. $\sim p\quad$ 4, 2, I4\
 6\. $p\quad$ 5, E15
 
-Hence $\vdash((\lnot p\Rightarrow q)\land\lnot q)\Rightarrow p$.
+Hence $\vdash((\sim p\Rightarrow q)\land\sim q)\Rightarrow p$.
 
-Thus, $\vdash((\lnot p\Rightarrow p)\lor((\lnot p\Rightarrow q)\land\lnot q))\Rightarrow p\qquad\blacksquare$
+Thus, $\vdash((\sim p\Rightarrow p)\lor((\sim p\Rightarrow q)\land\sim q))\Rightarrow p\qquad\blacksquare$
 {{< /notice >}}
 
 ## Bidirectional Proof
@@ -183,15 +183,15 @@ Combining the results of (i) and (ii), we have $\vdash(p\lor p)\Leftrightarrow p
 This is hardly used at all, except for specific circumstances. The exact form in the courseware is:
 > To prove that $\vdash\alpha\Rightarrow\beta$, we may attempt to prove that $\vdash\beta$.
 
-This means we are only proving $\beta$ with the axiom $\omega\lor\lnot\omega$.
+This means we are only proving $\beta$ with the axiom $\omega\lor\sim\omega$.
 {{< notice example >}}
-Prove that $\vdash p\Rightarrow\lnot(q\land\lnot q)$.
+Prove that $\vdash p\Rightarrow\sim(q\land\sim q)$.
 
 (Trivial proof)\
-1\. $\lnot q\lor\lnot\lnot q\quad$ axiom\
-2\. $\lnot(q\land\lnot q)\quad$ 1, E16
+1\. $\sim q\lor\sim q\quad$ axiom\
+2\. $\sim(q\land\sim q)\quad$ 1, E16
 
-Thus $\vdash p\Rightarrow\lnot(q\land\lnot q)\qquad\blacksquare$
+Thus $\vdash p\Rightarrow\sim(q\land\sim q)\qquad\blacksquare$
 {{< /notice >}}
 
 ## Vacuous Proof
@@ -199,13 +199,13 @@ Honestly, I am not even sure if I have used this proof method before. The exact 
 > To prove that $\vdash\alpha\Rightarrow\beta$, we may attempt to prove that $\vdash\alpha\Rightarrow false$
 
 {{< notice example >}}
-Prove that $\vdash(p\land\lnot p)\Rightarrow(q\lor\lnot p)$
+Prove that $\vdash(p\land\sim p)\Rightarrow(q\lor\sim p)$
 
 (Vacuous proof)\
-1\. $p\land\lnot p\quad$ Hypothesis\
+1\. $p\land\sim p\quad$ Hypothesis\
 2\. $false\quad$ 1, E1
 
-Hence, $\vdash(p\land\lnot p)\Rightarrow(q\lor\lnot p)\qquad\blacksquare$
+Hence, $\vdash(p\land\sim p)\Rightarrow(q\lor\sim p)\qquad\blacksquare$
 {{< /notice >}}
 
 # Summary
