@@ -13,7 +13,7 @@ series = []
 First-order logic is essentially an extension of propositional logic. Thus, the same equivalences and inference rules applies in FOL. However, FOL is intended to expand on propositional logic by including functions. Here's what I mean:
 
 - If I wanted to say "John goes to the movies", "Sam goes to the movies", "Alex goes to the movies", I could use $J$, $S$ and $A$ to represent John/Sam/Alex (respectively) going to the movies.
-- However, instead, what if I defined a function $M(x)$ for any person $x$ where $M(x) = x$ goes to the movies?
+- However, instead, what if I defined a function $M(x)$ for any person $x$ where $M(x) = x\\;goes\\;to\\;the\\;movies$?
 - That way, I could have $M(j)$, $M(s)$, $M(a)$ for John/Sam/Alex (respectively) going to the movies. These are called **predicates**.
 - What makes this even better is I can have an expression for "Everyone goes to the movies": $(\forall x)M(x)$ or "There exists someone who goes to the movies": $(\exists x)M(x)$.
 - The $\forall$ and $\exists$ operators are called **quantifiers**.
