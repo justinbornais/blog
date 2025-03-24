@@ -85,7 +85,7 @@ function sendEmailOnSubmit(e) {
         htmlMessage += "</body></html>";
 
         var subject = `New Form Submission by ${name}`;
-        var recipient = "some@email.com"; // Replace with the email you want to send it to.
+        var recipient = "some@email.com"; // Replace with the email you want to send it to. To include multiple accounts, separate each email with a comma.
 
         MailApp.sendEmail({
         to: recipient,
