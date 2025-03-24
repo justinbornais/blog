@@ -1,5 +1,5 @@
 +++ 
-date = 2025-03-24T18:22:07-05:00
+date = 2025-03-24T10:22:07-05:00
 title = "Automatically Send Emails via Google Forms - Including All Submission Details"
 description = ""
 slug = ""
