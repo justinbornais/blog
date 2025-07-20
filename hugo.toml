@@ -1,21 +1,27 @@
 baseURL = 'https://blog.justinbornais.ca/'
 languageCode = 'en-us'
-title = 'My Blog'
+title = 'Justin Bornais'
 theme = "hugo-coder"
-paginate = 20
 enableEmoji = true
 
 [markup.highlight]
 noClasses = false
+
+[pagination]
+pagerSize = 20
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
 
+[services]
+  [services.disqus]
+    shortname = "justin-b-blog"
+
 [params]
 author = "Justin Bornais"
-# license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
+# license = "All Rights Reserved"
 description = "Justin Bornais's personal blog."
 keywords = "blog,developer,personal,computer,science,cs,school,student,prof,professor"
 info = ["Full Stack Software Developer", "Pianist", "Piano Teacher", "Guitarist"]
